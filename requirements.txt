@@ -1,0 +1,6 @@
+# Dit zijn de externe bibliotheken die nodig zijn voor het project.
+# OpenCV (cv2) wordt automatisch geinstalleerd als onderdeel van 'face-recognition' maar 
+# het is goed om deze expliciet te benoemen voor de volledigheid.
+face-recognition
+opencv-python
+numpy
