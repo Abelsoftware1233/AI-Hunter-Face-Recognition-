@@ -1,23 +1,29 @@
 # AI-Hunter-Face-Recognition-
-Repository for the AI software Face Recognition 
-script AI:
-Dit is een basis script voor gezichtsdetectie met OpenCV, een populaire bibliotheek voor computer vision. Installeer deze met 'pip install opencv-python'. Sla de code op als 'face_detector.py' en vervang 'path/to/your/image.jpg' door het echte pad naar je afbeelding. Daarna kun je het script uitvoeren met 'python face_detector.py'. Importeer cv2 # OpenCV import cv2 # Load the cascade for face detection face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml') # Read the image image = cv2.imread('path/to/your/image.jpg') # Convert the image to grayscale gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) # Detect faces in the image faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30)) # Print the number of faces detected print(f"Found {len(faces)} faces!") # Draw a rectangle around the faces detected for (x, y, w, h) in faces: cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 0), 2) # Display the output image cv2.imshow('Face Detection', image) # Wait for a key press and close the window cv2.waitKey(0) cv2.destroyAllWindows()
+# AI-Hunter-Face-Recognition - Gezichtsherkenningssoftware
 
-Handleiding AI
-Conceptuele Uitleg: Hoe Werkt Zo'n Zoeksysteem?
-​Om een foto van een persoon te gebruiken om vergelijkbare foto's op het web te vinden, zijn er drie hoofdfasen nodig:
-​1. Gezichtsherkenning en Codering (Feature Extraction)
-​De AI moet leren wat de 'unieke kenmerken' van het gezicht zijn.
-​Gezichtsdetectie: Eerst wordt een algoritme (bijv. op basis van Deep Learning) gebruikt om het gezicht in de ingevoerde foto te lokaliseren.
-​Gezichtscodering (Embedding): Vervolgens wordt dit gezicht omgezet in een reeks getallen, een zogeheten gezichtscodering (of "embedding"). Dit is een unieke numerieke representatie van de gezichtskenmerken van de persoon (de afstand tussen de ogen, de vorm van de neus, etc.).
-​Technologie: Populaire bibliotheken hiervoor zijn dlib en face_recognition in Python.
-​2. Zoeken op het Web (Indexing and Querying)
-​Dit is het meest uitdagende en ethisch gevoelige deel.
-​Indexering: In een perfecte wereld zou je een database (een index) nodig hebben van miljarden afbeeldingen die al zijn gecodeerd (stap 1) en aan een webadres (URL) zijn gekoppeld.
-​Query: Je neemt de gezichtscodering van de ingevoerde foto en zoekt in je index naar andere gezichtscoderingen die er numeriek gezien het meest op lijken.
-​Praktijk: Omdat het onmogelijk is om zelf het hele web te indexeren, maken commerciële diensten zoals Google Afbeeldingen of gespecialiseerde zoekmachines gebruik van hun eigen enorme, gepatenteerde databases en zoekalgoritmen. Ze bieden echter meestal geen openbare API aan om specifiek op gezichtscoderingen van individuen te zoeken vanwege privacy.
-​3. Resultaten Weergeven
-​De resultaten uit de index worden gerangschikt op basis van 'gelijkenis' (de numerieke afstand tussen de gezichtscoderingen) en de corresponderende URL's worden getoond.
-​Basis Python Script: Gezichtsdetectie
-​Dit script demonstreert de eerste, minst controversiële stap: het detecteren en coderen van een gezicht in een lokale afbeelding. Dit is een fundamenteel onderdeel van elk gezichtsherkenningssysteem.
-​⚠️ Let op: Voor dit script heb je de bibliotheken face_recognition en mogelijk opencv-python nodig. Deze zijn niet standaard en moeten via pip worden geïnstalleerd (pip install face-recognition opencv-python).
+Dit project bouwt een lokale gezichtsherkennings- en zoekmachine. Het combineert Computer Vision (met de `face-recognition` bibliotheek) met een lokale database (SQLite) om snel onbekende gezichten te matchen met een geïndexeerde collectie foto's.
+
+## ⚠️ Disclaimer
+
+Dit project is uitsluitend bedoeld voor educatieve doeleinden en het demonstreren van Computer Vision-technologie. Het ongeoorloofd verzamelen en verwerken van persoonlijke, biometrische gegevens is illegaal onder privacywetgeving (zoals de AVG/GDPR). Gebruik dit gereedschap altijd **verantwoordelijk** en met **uitdrukkelijke toestemming** van de gefotografeerde personen.
+
+## 🚀 De Bouwstenen
+
+| Bestand | Functie |
+| :--- | :--- |
+| `database_index.py` | Stelt de SQLite database op en zorgt voor opslag van de 128-dimensionale gezichtscoderingen. |
+| `index_builder.py` | Leest een map met bekende foto's in, codeert ze en vult de database. |
+| **`main_runner.py`** | Het centrale script. Codeert een onbekende foto en zoekt de beste match in de database. |
+| `gezichts_vergelijker.py` | (Basis logica) Bevat de kerncode voor het berekenen van de afstand tussen twee gezichten. |
+| `zoek_via_google.py` | Start een reverse image search in de browser als de lokale database geen match vindt. |
+| `requirements.txt` | Lijst van alle benodigde Python bibliotheken. |
+
+## 🛠️ Installatie
+
+1.  Zorg ervoor dat Python 3.x is geïnstalleerd.
+2.  Navigeer naar de projectmap in je terminal.
+3.  Installeer alle benodigde pakketten:
+    ```bash
+    pip install -r requirements.txt
+    ```
+4.  Lees de volledige handleiding in de volgende sectie.
