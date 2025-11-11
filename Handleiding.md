@@ -11,4 +11,28 @@ Repository for the AI software Face Recognition script AI: Dit is een basis scri
 
 Handleiding AI Conceptuele Uitleg: Hoe Werkt Zo'n Zoeksysteem?Om een foto van een persoon te gebruiken om vergelijkbare foto's op het web te vinden, zijn er drie hoofdfasen nodig:1. Gezichtsherkenning en Codering (Feature Extraction)De AI moet leren wat de 'unieke kenmerken' van het gezicht zijn.Gezichtsdetectie: Eerst wordt een algoritme (bijv. op basis van Deep Learning) gebruikt om het gezicht in de ingevoerde foto te lokaliseren.Gezichtscodering (Embedding): Vervolgens wordt dit gezicht omgezet in een reeks getallen, een zogeheten gezichtscodering (of "embedding"). Dit is een unieke numerieke representatie van de gezichtskenmerken van de persoon (de afstand tussen de ogen, de vorm van de neus, etc.).Technologie: Populaire bibliotheken hiervoor zijn dlib en face_recognition in Python.2. Zoeken op het Web (Indexing and Querying)Dit is het meest uitdagende en ethisch gevoelige deel.Indexering: In een perfecte wereld zou je een database (een index) nodig hebben van miljarden afbeeldingen die al zijn gecodeerd (stap 1) en aan een webadres (URL) zijn gekoppeld.Query: Je neemt de gezichtscodering van de ingevoerde foto en zoekt in je index naar andere gezichtscoderingen die er numeriek gezien het meest op lijken.Praktijk: Omdat het onmogelijk is om zelf het hele web te indexeren, maken commerciële diensten zoals Google Afbeeldingen of gespecialiseerde zoekmachines gebruik van hun eigen enorme, gepatenteerde databases en zoekalgoritmen. Ze bieden echter meestal geen openbare API aan om specifiek op gezichtscoderingen van individuen te zoeken vanwege privacy.3. Resultaten WeergevenDe resultaten uit de index worden gerangschikt op basis van 'gelijkenis' (de numerieke afstand tussen de gezichtscoderingen) en de corresponderende URL's worden getoond.Basis Python Script: GezichtsdetectieDit script demonstreert de eerste, minst controversiële stap: het detecteren en coderen van een gezicht in een lokale afbeelding. Dit is een fundamenteel onderdeel van elk gezichtsherkenningssysteem.⚠️ Let op: Voor dit script heb je de bibliotheken face_recognition en mogelijk opencv-python nodig. Deze zijn niet standaard en moeten via pip worden geïnstalleerd (pip install face-recognition opencv-python).
 
+# AI-Hunter-Face-Recognition-
+Repository for the AI software Face Recognition 
+script AI:
+Dit is een basis script voor gezichtsdetectie met OpenCV, een populaire bibliotheek voor computer vision. Installeer deze met 'pip install opencv-python'. Sla de code op als 'face_detector.py' en vervang 'path/to/your/image.jpg' door het echte pad naar je afbeelding. Daarna kun je het script uitvoeren met 'python face_detector.py'. Importeer cv2 # OpenCV import cv2 # Load the cascade for face detection face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml') # Read the image image = cv2.imread('path/to/your/image.jpg') # Convert the image to grayscale gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) # Detect faces in the image faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30)) # Print the number of faces detected print(f"Found {len(faces)} faces!") # Draw a rectangle around the faces detected for (x, y, w, h) in faces: cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 0), 2) # Display the output image cv2.imshow('Face Detection', image) # Wait for a key press and close the window cv2.waitKey(0) cv2.destroyAllWindows()
+
+Handleiding AI
+Conceptuele Uitleg: Hoe Werkt Zo'n Zoeksysteem?
+Om een foto van een persoon te gebruiken om vergelijkbare foto's op het web te vinden, zijn er drie hoofdfasen nodig:
+1. Gezichtsherkenning en Codering (Feature Extraction)
+De AI moet leren wat de 'unieke kenmerken' van het gezicht zijn.
+Gezichtsdetectie: Eerst wordt een algoritme (bijv. op basis van Deep Learning) gebruikt om het gezicht in de ingevoerde foto te lokaliseren.
+Gezichtscodering (Embedding): Vervolgens wordt dit gezicht omgezet in een reeks getallen, een zogeheten gezichtscodering (of "embedding"). Dit is een unieke numerieke representatie van de gezichtskenmerken van de persoon (de afstand tussen de ogen, de vorm van de neus, etc.).
+Technologie: Populaire bibliotheken hiervoor zijn dlib en face_recognition in Python.
+2. Zoeken op het Web (Indexing and Querying)
+Dit is het meest uitdagende en ethisch gevoelige deel.
+Indexering: In een perfecte wereld zou je een database (een index) nodig hebben van miljarden afbeeldingen die al zijn gecodeerd (stap 1) en aan een webadres (URL) zijn gekoppeld.
+Query: Je neemt de gezichtscodering van de ingevoerde foto en zoekt in je index naar andere gezichtscoderingen die er numeriek gezien het meest op lijken.
+Praktijk: Omdat het onmogelijk is om zelf het hele web te indexeren, maken commerciële diensten zoals Google Afbeeldingen of gespecialiseerde zoekmachines gebruik van hun eigen enorme, gepatenteerde databases en zoekalgoritmen. Ze bieden echter meestal geen openbare API aan om specifiek op gezichtscoderingen van individuen te zoeken vanwege privacy.
+3. Resultaten Weergeven
+De resultaten uit de index worden gerangschikt op basis van 'gelijkenis' (de numerieke afstand tussen de gezichtscoderingen) en de corresponderende URL's worden getoond.
+Basis Python Script: Gezichtsdetectie
+Dit script demonstreert de eerste, minst controversiële stap: het detecteren en coderen van een gezicht in een lokale afbeelding. Dit is een fundamenteel onderdeel van elk gezichtsherkenningssysteem.
+⚠️ Let op: Voor dit script heb je de bibliotheken face_recognition en mogelijk opencv-python nodig. Deze zijn niet standaard en moeten via pip worden geïnstalleerd (pip install face-recognition opencv-python).
+
 
